@@ -1,6 +1,6 @@
 # Spotify Song Search App
 
-Made using React Hooks and CSS :)
+Made using React Hooks and CSS :innocent:
 
 It Fetches data from the Spotify API, ask the user for authorization and then searches the artist and shows the top 10 songs of that artist.
 
