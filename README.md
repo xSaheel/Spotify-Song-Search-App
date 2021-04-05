@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Spotify Song Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Made using React Hooks and CSS :)
 
 ## Available Scripts
 
