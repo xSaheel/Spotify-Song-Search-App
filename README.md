@@ -2,6 +2,8 @@
 
 Made using React Hooks and CSS :)
 
+It Fetches data from the Spotify API, ask the user for authorization and then searches the artist and shows the top 10 songs of that artist.
+
 ## Available Scripts
 
 In the project directory, you can run:
