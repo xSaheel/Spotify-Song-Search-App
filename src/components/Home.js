@@ -1,11 +1,12 @@
-import Search from "./Search";
-import LoginNav from "./LoginNav";
+import NavBar, { Footer } from "./navbar";
+import Dashboard from "./dashboard";
 
 const Home = () => {
     return (
-        <div>
-            <LoginNav/>
-            <Search/>
+        <div className="main">
+            <NavBar/>
+            <Dashboard/>
+            <Footer />
         </div>
     );
 }

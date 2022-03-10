@@ -1,0 +1,23 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3rem;
+
+    .heroText {
+        flex: 0.5;
+        font-size: 3rem;
+        max-width: 40vw;
+        height: calc(100vh - 75px);
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+
+    .searchWrapper {
+        flex: 0.5;
+        padding-left: 3rem;
+        position: relative;
+        display: flex;
+    }
+}

@@ -1,0 +1,22 @@
+.root {
+    height: 100vh;
+    background-image: linear-gradient(#a6e099, rgb(12, 12, 12) 60%);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+
+    button {
+        padding: 0.5rem 2rem;
+        border-radius: 3rem;
+        margin-top: 2rem;
+        border: none;   
+        cursor: pointer;
+    }
+
+    h2 {
+        margin: 1.5rem 0 0.5rem;
+    }
+}

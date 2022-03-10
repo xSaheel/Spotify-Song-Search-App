@@ -1,0 +1,71 @@
+.root {
+    background-image: linear-gradient(#a6e099, rgb(12, 12, 12) 60%);
+    color: white;
+    
+    h1 {
+        font-size: 3em;
+    }
+
+    .header {
+        height: 300px;
+        width: 100%;
+        background-image: linear-gradient(teal, #77a16e);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 3rem;
+
+        .headerThumbnail {
+            height: 200px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            background-image: linear-gradient(#77a16e, teal);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            margin: 0 3rem;
+
+            h2 {
+                font-weight: lighter;
+                font-size: 18px;
+                letter-spacing: 6px;
+                border-bottom: 0.5px solid white;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+.popularityContainer {
+    height: 100px;
+    width: 100px;
+    border: 2px solid red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1rem;
+}
+
+.songsContainer {
+    backdrop-filter: blur(20px);
+    padding: 3rem 5rem;
+    min-height: calc(100vh - 300px);
+}
+
+.song {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
