@@ -3,15 +3,52 @@ import { SocialIcon } from "react-social-icons";
 import {ReactComponent as Logo} from "../../assets/logo.svg";
 import classes from "./styles.module.scss";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import queryString from 'query-string'
+import { getUserData } from "../../api";
 
 const NavBar = () => {
     const handleLogin = () => {
         window.location = `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=token&show_dialog=true`;
     };
+    const handleLogout = () => {
+        setUserData(null);
+        localStorage.removeItem("accessToken");
+        window.location.href = "/";
+    };
+    const [userData, setUserData] = useState(null);
+    const parsedHash = queryString.parse(window.location.hash);
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem("accessToken");
+        if (accessToken) {
+            const fetchUserDetails = async () => {
+                try {
+                    const res = await getUserData();
+                    setUserData(res);
+                } catch (err) {
+                    console.log('err: ', err);
+                }
+            }
+            fetchUserDetails();
+        }
+    }, []);
+
+    useEffect(() => {
+        const accessToken = parsedHash.access_token;
+        console.log('accessToken: ', accessToken);
+        if(accessToken) {
+          localStorage.setItem("accessToken", accessToken)
+        }
+    }, [window.location]);
+
     return (
         <div className={classes.navBarRoot}>
             <Logo height={40} fill="white" />
-            <button className={classes.loginBtn} onClick={handleLogin}>Login</button>
+            <div className={classes.greetContainer}>
+                {userData ? <div className={classes.greet}>{`Hi, ${userData.display_name}`}</div> : <button className={classes.loginBtn} onClick={handleLogin}>Login</button>}
+                {userData &&  <button className={classes.loginBtn} onClick={handleLogout}>Logout</button>}
+            </div>
         </div>
     )
 }
@@ -20,10 +57,12 @@ export const SideBar = ({ children }) => {
     return (
         <div className={classes.sideBarWrapper}>
             <div className={classes.sideBar}>
-                <Logo height={40} fill="white" />
+                <Link to="/" style={{cursor: "pointer"}}>
+                    <Logo height={40} fill="white" />
+                </Link>
                 <hr /> 
                 <Link to="/" className={classes.menuItem}>Home</Link>
-                <Link to="/" className={classes.menuItem}>My Profile</Link>
+                <Link href="https://saheeldas.netlify.app/" className={classes.menuItem}>My Profile</Link>
                 <Link to="/" className={classes.menuItem}>About Dev</Link>
                 <hr />  
                 <div className={classes.social}>

@@ -1,18 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom';
-import queryString from 'query-string'
 import classes from "./styles.module.scss";
 
 const Dashboard = () => {
-  const parsedHash = queryString.parse(window.location.hash);
-  const accessToken = parsedHash.access_token;
-
-  useEffect(() => {
-    if(accessToken) {
-      localStorage.setItem("accessToken", accessToken)
-    }
-  }, [accessToken]);
-
   return (
     <div className={classes.root}>
       <h1 className={classes.heroText}>Search for millions of songs, artists and podcasts, for free.</h1>

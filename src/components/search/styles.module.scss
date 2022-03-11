@@ -15,6 +15,9 @@
         justify-content: flex-start;
         padding: 0 3rem;
 
+        position: sticky;
+        top: 0;
+
         .headerThumbnail {
             height: 200px;
             width: 200px;
@@ -40,13 +43,14 @@
 }
 
 .popularityContainer {
-    height: 100px;
-    width: 100px;
+    height: 40px;
+    width: 40px;
     border: 2px solid red;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: red;
 }
 
 .flexContainer {
@@ -57,9 +61,12 @@
 }
 
 .songsContainer {
-    backdrop-filter: blur(20px);
-    padding: 3rem 5rem;
     min-height: calc(100vh - 300px);
+    padding-bottom: 3rem;
+
+    :hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
 }
 
 .song {
@@ -68,4 +75,69 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    padding: 0 8%;
+
+    :hover {
+        background-color: transparent;
+    }
+    .index {
+        flex: 0.1;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        // width: 40vw;
+        flex: 0.5;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .artists {
+        // width: 40vw;
+        font-size: 12px;
+        color: #b3b3b3;
+        display: flex;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+    }
+    .trackName {
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+    }
+    .duration {
+        // width: 80px;
+        flex: 0.2;
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 2rem;
+    }
+    .preview {
+        flex: 0.2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .playPauseBtn {
+            height: 40px;
+            width: 40px;
+            background-color: #1ed760;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+    }
+}
+
+.tableHeader {
+    @extend .song;
+    text-transform: uppercase;
+    color: #b5b5b5;
+    letter-spacing: 2px;
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    border-bottom: 0.5px solid #b3b3b3;
 }
