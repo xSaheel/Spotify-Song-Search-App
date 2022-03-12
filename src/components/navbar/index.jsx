@@ -36,7 +36,6 @@ const NavBar = () => {
 
     useEffect(() => {
         const accessToken = parsedHash.access_token;
-        console.log('accessToken: ', accessToken);
         if(accessToken) {
           localStorage.setItem("accessToken", accessToken)
         }
