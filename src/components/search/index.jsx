@@ -18,12 +18,11 @@ const Search = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [notFound, setNotFound] = useState(false);
     const [currentSong, setCurrentSong] = useState(null);
-    const accessToken = localStorage.getItem("accessToken");    
 
     useEffect(() => {
         const fetchArtistDetails = async () => {
             try {
-                const data = await getArtistDetails(query, accessToken);
+                const data = await getArtistDetails(query);
                 setArtistData(data.artists);
                 console.log('artist ', data);
             } catch (err) {
@@ -38,7 +37,7 @@ const Search = () => {
         if (artistData?.items[0]?.id) {
             const fetchTopTenSongs = async () => {
                 try {
-                    const data = await getTopTenSongs(artistData?.items[0]?.id, accessToken);
+                    const data = await getTopTenSongs(artistData?.items[0]?.id);
                     setIsLoading(false);
                     console.log('data: ', data);
                     setSongData(data.tracks);

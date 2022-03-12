@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import queryString from 'query-string'
 import { getUserData } from "../../api";
+import { getItemWithExpiry, setItemWithExpiry } from "../../utils";
 
 const NavBar = () => {
     const handleLogin = () => {
@@ -19,17 +20,18 @@ const NavBar = () => {
     const [userData, setUserData] = useState(null);
     const parsedHash = queryString.parse(window.location.hash);
 
+    const fetchUserDetails = async () => {
+        try {
+            const res = await getUserData();
+            setUserData(res);
+        } catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
     useEffect(() => {
-        const accessToken = localStorage.getItem("accessToken");
+        const accessToken = getItemWithExpiry("accessToken");
         if (accessToken) {
-            const fetchUserDetails = async () => {
-                try {
-                    const res = await getUserData();
-                    setUserData(res);
-                } catch (err) {
-                    console.log('err: ', err);
-                }
-            }
             fetchUserDetails();
         }
     }, []);
@@ -37,7 +39,8 @@ const NavBar = () => {
     useEffect(() => {
         const accessToken = parsedHash.access_token;
         if(accessToken) {
-          localStorage.setItem("accessToken", accessToken)
+            setItemWithExpiry("accessToken", accessToken, 3600000);
+            fetchUserDetails();
         }
     }, [window.location]);
 

@@ -1,28 +1,23 @@
 import axios from "axios";
 import { BASE_URL } from "./constants";
+import { getItemWithExpiry } from "./utils";
 
 const GET = async (url) => {
-    const accessToken = localStorage.getItem("accessToken");    
+    const accessToken = getItemWithExpiry("accessToken"); 
     const headers = {
         'Authorization': 'Bearer ' + accessToken,
     };
     return await axios.get(url, {headers}).then(res => res.data);
 }
 
-export const getTopTenSongs = async (artistId, accessToken) => {
+export const getTopTenSongs = async (artistId) => {
     const url = `${BASE_URL}artists/${artistId}/top-tracks?country=US&`;
-    const headers = {
-        'Authorization': 'Bearer ' + accessToken,
-    };
-    return await axios.get(url, {headers}).then(res => res.data);
+    return await GET(url);
 }   
 
-export const getArtistDetails = async (query, accessToken) => {
+export const getArtistDetails = async (query) => {
     const url = `${BASE_URL}search?q=${encodeURI(query)}&type=artist&limit=1`;
-    const headers = {
-        'Authorization': 'Bearer ' + accessToken,
-    };
-    return await axios.get(url, {headers}).then(res => res.data);
+    return await GET(url);
 }  
 
 export const getUserData = async () => {
