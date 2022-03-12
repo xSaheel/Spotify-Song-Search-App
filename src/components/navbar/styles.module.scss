@@ -8,6 +8,10 @@
     justify-content: space-between;
     padding: 0 15%;
 
+    @media (max-width: 1024px) {
+        padding: 0 1.5rem;
+    }
+
     .greetContainer {
         display: flex;
         align-items: center;
@@ -17,6 +21,9 @@
     .greet {
         font-weight: 500;
         font-size: 18px;
+        @media (max-width: 550px) {
+            display: none;
+        }
     }
 
     .loginBtn {
@@ -26,8 +33,12 @@
         color: black;
         outline: none;
         border: none;
-        min-width: 100px;
         cursor: pointer;
+
+        @media (max-width: 1024px) {
+            padding: 0.5rem 1rem;
+            font-size: 12px;
+        }
     }
 }
 
@@ -48,6 +59,10 @@
         top: 0;
         color: white;
 
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
         hr {
             width: 80%;
         }
@@ -56,6 +71,9 @@
     .children {
         flex: 0.8;
         overflow: hidden;
+        @media (max-width: 1024px) {
+            flex: 1;
+        }
     }
 
     .menuItem {
@@ -84,11 +102,21 @@
     display: flex;
     transform: translateY(-5px);
     padding: 2rem 15%;
+    @media (max-width: 550px) {
+        padding: 2rem 5%;
+    }
 
     .aboutSection {
         display: flex;
         flex-direction: column;
         flex: 0.6;
+        @media (max-width: 550px) {
+            padding-left: 2rem;
+            p {
+                font-size: 12px;
+            }
+        }
+
     }
 
     .logoContainer {

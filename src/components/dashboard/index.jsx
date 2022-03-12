@@ -17,15 +17,15 @@ const SearchBar = () => {
     <div className={classes.searchWrapper}>
         <i className="fas fa-search"></i>
         <input 
-            className="search-bar" 
+            className={classes.searchBar} 
             type="text" 
-            placeholder="Search your favourite Artist / Singer..." 
+            placeholder="Search your favorite Artist..." 
             name="search-bar"
             onChange={(e) => setQuery(e.target.value)}
         >  
         </input>
         <Link to={`/search?query=${query}`}>
-          <button className="search-btn">Search</button>
+          <div className={classes.searchBtn}>Search</div>
         </Link>
     </div>
   )
