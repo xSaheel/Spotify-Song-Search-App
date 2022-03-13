@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { REACT_APP_AUTHORIZE_URL, REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URL } from "../../config";
+import { getItemWithExpiry } from "../../utils";
 import classes from "./styles.module.scss";
 
 const Dashboard = () => {
@@ -13,6 +15,14 @@ const Dashboard = () => {
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
+  const handleSearch = () => {
+    const accessToken = getItemWithExpiry("accessToken");
+    if(!accessToken) {
+      window.location = `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=token&show_dialog=true`;
+    } else {
+       window.location.href = `/search?query=${query}`;
+    }
+  }
   return (
     <div className={classes.searchWrapper}>
         <i className="fas fa-search"></i>
