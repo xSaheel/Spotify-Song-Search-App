@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getArtistDetails, getTopTenSongs } from "../../api";
 import Loader from "../loader";
 import { SideBar } from "../navbar";
 import { ReactComponent as PlayIcon } from "../../assets/play.svg";
@@ -8,51 +6,13 @@ import { ReactComponent as PauseIcon } from "../../assets/pause.svg";
 import NotFound from "../not-found";
 import classes from "./styles.module.scss";
 import { useAudio } from "./useAudio";
+import { useSearch } from "./useSearch";
 // import MusicPlayer from "../music-player";
 
 const Search = () => {
     const search = useLocation().search;
     const query = new URLSearchParams(search).get('query');
-    const [songData, setSongData] = useState([]);
-    const [artistData, setArtistData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [notFound, setNotFound] = useState(false);
-    const [currentSong, setCurrentSong] = useState(null);
-
-    useEffect(() => {
-        const fetchArtistDetails = async () => {
-            try {
-                const data = await getArtistDetails(query);
-                setArtistData(data.artists);
-                console.log('artist ', data);
-            } catch (err) {
-                setNotFound(true);
-                console.log('err: ', err);
-            }
-        }
-        fetchArtistDetails();
-    },[]);
-
-    useEffect(() => {
-        if (artistData?.items[0]?.id) {
-            const fetchTopTenSongs = async () => {
-                try {
-                    const data = await getTopTenSongs(artistData?.items[0]?.id);
-                    setIsLoading(false);
-                    console.log('data: ', data);
-                    setSongData(data.tracks);
-                } catch (err) {
-                    setIsLoading(false);
-                    console.log('err: ', err);
-                }
-            }
-            fetchTopTenSongs();
-        }
-        if(artistData && !artistData.items.length) {
-            console.log('artistData: ', artistData);
-            setNotFound(true);
-        }
-    },[artistData]);
+    const { artistData, isLoading, notFound, songData, currentSong, setCurrentSong } = useSearch(query);
 
     if(notFound) return <SideBar><NotFound /></SideBar>;
     if(isLoading) return <SideBar><Loader /></SideBar>;

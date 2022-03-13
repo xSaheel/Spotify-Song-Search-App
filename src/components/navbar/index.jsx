@@ -25,7 +25,7 @@ const NavBar = () => {
             const res = await getUserData();
             setUserData(res);
         } catch (err) {
-            console.log('err: ', err);
+            console.error(err);
         }
     }
 

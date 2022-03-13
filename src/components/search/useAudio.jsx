@@ -18,22 +18,12 @@ export const useAudio = () => {
     }, [currentTrackUrl]);
 
     useEffect(() => {
-        console.log('isPlaying: ', isPlaying);
         if(isPlaying) {
             audioRef.current.play();
         } else {
             audioRef.current.pause();
         }
     }, [isPlaying]);
-
-    // useEffect(() => {
-    //     console.log('useEffect: ', "bruh");
-    //     setIsPlaying(false);
-    // }, [window.location]);
-
-    useEffect(() => {
-        console.log('useEffect: ', audioRef.current);
-    });
 
     return {
         isPlaying,
