@@ -25,9 +25,9 @@ const SearchBar = () => {
   //   }
   // }
   const { artistData } = useSearch(query, 5);
-  const handleSearchSuggestion = (artistName) => {
-    window.location.href = `/search?query=${artistName}`;
-  }
+  // const handleSearchSuggestion = (artistName) => {
+  //   window.location.href = `/search?query=${artistName}`;
+  // }
   return (
     <div className={classes.searchContainer}>
       <div className={classes.searchWrapper}>
@@ -48,11 +48,13 @@ const SearchBar = () => {
       {query && artistData && (
         <div className={classes.searchResultWrapper}>
           {artistData.items.map(artist => (
-            <div className={classes.searchResult} onClick={() => handleSearchSuggestion(artist?.name) }>
-                <img src={artist?.images[0]?.url} alt={artist?.name} height={30} width={30} className={classes.thumbnail} />
-                <div>{artist?.name}</div>
-                {artist?.genre && artist?.genre.map(genre => <div>{genre}</div>)}
-            </div>
+            <Link to={`/search?query=${artist?.name}`}>
+              <div className={classes.searchResult}>
+                  <img src={artist?.images[0]?.url} alt={artist?.name} height={30} width={30} className={classes.thumbnail} />
+                  <div>{artist?.name}</div>
+                  {artist?.genre && artist?.genre.map(genre => <div>{genre}</div>)}
+              </div>
+            </Link>
           ))}
         </div>
       )}
