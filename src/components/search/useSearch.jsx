@@ -19,6 +19,7 @@ export const useSearch = (query, limit = 1) => {
 
     useEffect(() => {
         fetchArtistDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[query]);
 
     useEffect(() => {

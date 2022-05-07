@@ -42,6 +42,7 @@ const NavBar = () => {
             setItemWithExpiry("accessToken", accessToken, 3600000);
             fetchUserDetails();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [window.location]);
 
     return (
