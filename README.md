@@ -16,6 +16,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### Deployed at Heroku :sunglasses:
+### Deployed at Netlify :sunglasses:
 
-[Click here to view site](https://spotify-song-search-app.herokuapp.com/)
+[Click here to view site](https://mini-spotify-clone.netlify.app/)
