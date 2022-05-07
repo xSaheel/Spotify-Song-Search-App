@@ -15,8 +15,8 @@ export const getTopTenSongs = async (artistId) => {
     return await GET(url);
 }   
 
-export const getArtistDetails = async (query) => {
-    const url = `${BASE_URL}search?q=${encodeURI(query)}&type=artist&limit=1`;
+export const getArtistDetails = async (query, limit) => {
+    const url = `${BASE_URL}search?q=${encodeURI(query)}&type=artist&limit=${limit}`;
     return await GET(url);
 }  
 

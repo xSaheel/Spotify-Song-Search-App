@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import { getArtistDetails, getTopTenSongs } from "../../api";
 
-export const useSearch = (query) => {
+export const useSearch = (query, limit = 1) => {
     const [songData, setSongData] = useState([]);
     const [artistData, setArtistData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [notFound, setNotFound] = useState(false);
     const [currentSong, setCurrentSong] = useState(null);
 
-    useEffect(() => {
-        const fetchArtistDetails = async () => {
-            try {
-                const data = await getArtistDetails(query);
-                setArtistData(data.artists);
-            } catch (err) {
-                setNotFound(true);
-            }
+    const fetchArtistDetails = async () => {
+        try {
+            const data = await getArtistDetails(query, limit);
+            setArtistData(data.artists);
+        } catch (err) {
+            setNotFound(true);
         }
+    }
+
+    useEffect(() => {
         fetchArtistDetails();
-    },[]);
+    },[query]);
 
     useEffect(() => {
         if (artistData?.items[0]?.id) {
@@ -44,6 +45,7 @@ export const useSearch = (query) => {
         isLoading,
         notFound,
         currentSong,
-        setCurrentSong
+        setCurrentSong,
+        fetchArtistDetails
     }
 }
