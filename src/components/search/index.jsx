@@ -13,6 +13,7 @@ const Search = () => {
     const search = useLocation().search;
     const query = new URLSearchParams(search).get('query');
     const { artistData, isLoading, notFound, songData, currentSong, setCurrentSong } = useSearch(query);
+    console.log('artistData: ', artistData);
 
     if(notFound) return <SideBar><NotFound /></SideBar>;
     if(isLoading) return <SideBar><Loader /></SideBar>;
@@ -25,6 +26,7 @@ const Search = () => {
                         <h2>TOP 10</h2>
                         <div>{artistData.items[0].name}</div>
                     </div>
+                    {/* <img src={artistData?.items[0]?.images[0]?.url} alt={artistData?.name} height={200} width={200} /> */}
                     <div className={classes.flexContainer}>
                         <h1>Top 10 tracks of {artistData.items[0].name}</h1>
                         <div>Your daily update of the most played tracks right now - {artistData.items[0].name}.</div>

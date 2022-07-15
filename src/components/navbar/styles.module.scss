@@ -100,7 +100,6 @@
     background-color: black;
     color: white;
     display: flex;
-    transform: translateY(-5px);
     padding: 2rem 15%;
     @media (max-width: 550px) {
         padding: 2rem 5%;
@@ -110,6 +109,7 @@
         display: flex;
         flex-direction: column;
         flex: 0.6;
+        gap: 1.2rem;
         @media (max-width: 550px) {
             padding-left: 2rem;
             p {
@@ -124,7 +124,6 @@
     }
 
     .socialContainer {
-        margin-top: 2rem;
         display: flex;
         gap: 1rem;
         width: 100%;

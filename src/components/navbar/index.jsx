@@ -86,8 +86,8 @@ export const Footer = () => {
                 <Logo height={40} fill="white" />
             </div>
             <div className={classes.aboutSection}>
-                <p>Spotify is a digital music service that gives you access to millions of songs. Search for your favorite Artists, Playlists and Songs for free.</p>
-                <p style={{marginTop: "1rem"}}>-- Saheel Das.</p>
+                <p>Spotify is a digital music service that gives you access to millions of songs. This website is just for educational purposes.</p>
+                <p>Made with &#10084;&#65039; by Saheel Das with React.</p>
                 <div className={classes.socialContainer}>
                     <SocialIcon url="https://github.com/xSaheel" bgColor="white" />
                     <SocialIcon url="https://stackoverflow.com/users/13186678/saheel-das" bgColor="white" />

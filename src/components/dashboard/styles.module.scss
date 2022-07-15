@@ -103,7 +103,7 @@
 }
 
 .searchResultWrapper {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     width: 100%;
     padding: 1.4rem 0;
     margin-top: 0.5rem;
@@ -118,10 +118,14 @@
         display: flex;
         align-items: center;
         padding: 0.5rem 3rem;
+        @media (max-width: 550px) {
+            padding: 0.5rem 1rem;
+        }
     }
 
     .searchResult:hover {
-        background-color: #f2f3f6;
+        background-color: rgb(98 0 209 / 18%);
+        // background-color: #a1f88f;
         cursor: pointer;
     }
 

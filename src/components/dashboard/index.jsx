@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { unknownArtistImageUrl } from "../../constants";
 import { useSearch } from "../search/useSearch";
 // import { REACT_APP_AUTHORIZE_URL, REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URL } from "../../config";
 // import { getItemWithExpiry } from "../../utils";
@@ -8,7 +9,8 @@ import classes from "./styles.module.scss";
 const Dashboard = () => {
   return (
     <div className={classes.root}>
-      <h1 className={classes.heroText}>Search for millions of songs, artists and podcasts, for free.</h1>
+      {/* <h1 className={classes.heroText}>Search for millions of songs, artists and podcasts, for free.</h1> */}
+      <h1 className={classes.heroText}>Search for your favorite artists &amp; listen to their top 10 tracks.</h1>
       <SearchBar />
     </div>
   )
@@ -50,7 +52,7 @@ const SearchBar = () => {
           {artistData.items.map(artist => (
             <Link to={`/search?query=${artist?.name}`}>
               <div className={classes.searchResult}>
-                  <img src={artist?.images[0]?.url} alt={artist?.name} height={30} width={30} className={classes.thumbnail} />
+                  <img src={artist?.images[0]?.url ?? unknownArtistImageUrl} alt={artist?.name} height={30} width={30} className={classes.thumbnail} />
                   <div>{artist?.name}</div>
                   {artist?.genre && artist?.genre.map(genre => <div>{genre}</div>)}
               </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getArtistDetails, getTopTenSongs } from "../../api";
 
 export const useSearch = (query, limit = 1) => {
@@ -8,17 +8,37 @@ export const useSearch = (query, limit = 1) => {
     const [notFound, setNotFound] = useState(false);
     const [currentSong, setCurrentSong] = useState(null);
 
-    const fetchArtistDetails = async () => {
+    /**
+     * func: callback function to be debouced
+     * delay: delay between every func call default 1000 ms / 1s
+     */
+    const debounce = (func, delay = 1000) => {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                func(...args);
+            }, delay);
+        }
+    }
+
+    const fetchArtistDetails = debounce(async (query) => {
         try {
             const data = await getArtistDetails(query, limit);
             setArtistData(data.artists);
         } catch (err) {
             setNotFound(true);
         }
-    }
+    });
+
+    // const optimizedSearch = useCallback(debounce(fetchArtistDetails), []);
+    // const optimizedSearch = debounce((searchQuery) => {
+    //     console.log('searchQuery: ', searchQuery);
+    //     // fetchArtistDetails(searchQuery);
+    // })
 
     useEffect(() => {
-        fetchArtistDetails();
+        fetchArtistDetails(query);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[query]);
 
