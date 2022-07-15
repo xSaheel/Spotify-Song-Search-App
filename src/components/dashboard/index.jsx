@@ -9,8 +9,7 @@ import classes from "./styles.module.scss";
 const Dashboard = () => {
   return (
     <div className={classes.root}>
-      {/* <h1 className={classes.heroText}>Search for millions of songs, artists and podcasts, for free.</h1> */}
-      <h1 className={classes.heroText}>Search for your favorite artists &amp; listen to their top 10 tracks.</h1>
+      <h1 className={classes.heroText}>Login to listen to top 10 tracks from your favorite artists.</h1>
       <SearchBar />
     </div>
   )
