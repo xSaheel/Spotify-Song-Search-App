@@ -1,0 +1,105 @@
+.searchContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 1.5;
+    min-height: 350px;
+    width: 80%;
+    @media (max-width: 1024px) {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.searchWrapper {
+    position: relative;
+    display: flex;
+    max-height: 60px;
+    width: 100%;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1), 0 5px 5px rgba(0,0,0,0.1);
+    border-radius: 3rem;
+    i {
+        font-size: 1.5rem;
+        color: #1db954;
+        position: absolute;
+        top: 1.15rem;
+        left: 1.5rem;
+        @media (max-width: 1024px) {
+            left: 1.2rem;
+        }
+        @media (max-width: 550px) {
+            top: 0.8rem;
+        }
+    }
+    a {
+        text-decoration: none;
+    }
+}
+
+.searchBar {
+    padding: 1.2rem;
+    padding-left: 4rem;
+    width: 100%;
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    border: none;
+    height: 60px;
+    @media (max-width: 550px) {
+        height: 50px;
+    }
+}
+
+.searchBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    background-color: #1db954;
+    border: none;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    min-width: 150px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    height: 60px;
+    @media (max-width: 550px) {
+        height: 50px;
+        min-width: 80px;
+        font-size: 12px;
+    }
+}
+
+.searchResultWrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    padding: 1.4rem 0;
+    margin-top: 0.5rem;
+    border-radius: 1.5rem;
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .searchResult {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 3rem;
+        @media (max-width: 550px) {
+            padding: 0.5rem 1rem;
+        }
+    }
+
+    .searchResult:hover {
+        background-color: rgb(98 0 209 / 18%);
+        // background-color: #a1f88f;
+        cursor: pointer;
+    }
+
+    .thumbnail {
+        border-radius: 4px;
+        margin-right: 1rem;
+    }
+}

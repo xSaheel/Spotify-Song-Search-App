@@ -13,7 +13,6 @@ const Search = () => {
     const search = useLocation().search;
     const query = new URLSearchParams(search).get('query');
     const { artistData, isLoading, notFound, songData, currentSong, setCurrentSong } = useSearch(query);
-    console.log('artistData: ', artistData);
 
     if(notFound) return <SideBar><NotFound /></SideBar>;
     if(isLoading) return <SideBar><Loader /></SideBar>;

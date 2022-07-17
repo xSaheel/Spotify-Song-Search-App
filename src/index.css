@@ -25,7 +25,7 @@
 }
 
 .main {
-  background-image: url("https://storage.googleapis.com/pr-newsroom-wp/1/2021/11/CULTURE_TRENDS-HEADER.png");
+  background-image: url("../src/assets/background.png");
   background-size: contain;
   background-repeat: repeat-y;
 }

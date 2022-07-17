@@ -1,72 +1,38 @@
-import { REACT_APP_AUTHORIZE_URL, REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URL } from "../../config";
 import { SocialIcon } from "react-social-icons";
 import {ReactComponent as Logo} from "../../assets/logo.svg";
 import classes from "./styles.module.scss";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import queryString from 'query-string'
-import { getUserData } from "../../api";
-import { getItemWithExpiry, setItemWithExpiry } from "../../utils";
+import { useAuth } from "./useAuth";
 
-const NavBar = () => {
-    const handleLogin = () => {
-        window.location = `${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=token&show_dialog=true`;
-    };
-    const handleLogout = () => {
-        setUserData(null);
-        localStorage.removeItem("accessToken");
-        window.location.href = "/";
-    };
-    const [userData, setUserData] = useState(null);
-    const parsedHash = queryString.parse(window.location.hash);
-
-    const fetchUserDetails = async () => {
-        try {
-            const res = await getUserData();
-            setUserData(res);
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    useEffect(() => {
-        const accessToken = getItemWithExpiry("accessToken");
-        if (accessToken) {
-            fetchUserDetails();
-        }
-    }, []);
-
-    useEffect(() => {
-        const accessToken = parsedHash.access_token;
-        if(accessToken) {
-            setItemWithExpiry("accessToken", accessToken, 3600000);
-            fetchUserDetails();
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [window.location]);
-
+const NavBar = ({ children }) => {
+    const { userData, handleLogin, handleLogout } = useAuth();
     return (
-        <div className={classes.navBarRoot}>
-            <Logo height={40} fill="white" />
-            <div className={classes.greetContainer}>
-                {userData ? <div className={classes.greet}>{`Hi, ${userData.display_name}`}</div> : <button className={classes.loginBtn} onClick={handleLogin}>Login</button>}
-                {userData &&  <button className={classes.loginBtn} onClick={handleLogout}>Logout</button>}
+        <>
+            <div className={classes.navBarRoot}>
+                <Logo height={40} fill="white" />
+                <div className={classes.greetContainer}>
+                    {userData ? <div className={classes.greet}>{`Hi, ${userData.display_name}`}</div> : <button className={classes.loginBtn} onClick={handleLogin}>Login</button>}
+                    {userData &&  <button className={classes.loginBtn} onClick={handleLogout}>Logout</button>}
+                </div>
             </div>
-        </div>
+            {children}
+            <Footer />
+        </>
     )
 }
 
 export const SideBar = ({ children }) => {
+    const { userData } = useAuth();
     return (
         <div className={classes.sideBarWrapper}>
             <div className={classes.sideBar}>
                 <Link to="/" style={{cursor: "pointer"}}>
                     <Logo height={40} fill="white" />
                 </Link>
+                {userData && <div className={classes.greet}>{`Hi, ${userData.display_name}`}</div>}
                 <hr /> 
                 <Link to="/" className={classes.menuItem}>Home</Link>
-                <Link href="https://saheeldas.netlify.app/" className={classes.menuItem}>My Profile</Link>
-                <Link to="/" className={classes.menuItem}>About Dev</Link>
+                <Link to={{ pathname: "https://saheeldas.netlify.app/" }} target="_blank" className={classes.menuItem}>About Dev</Link>
                 <hr />  
                 <div className={classes.social}>
                     <SocialIcon url="https://github.com/xSaheel" bgColor="white" />
@@ -79,7 +45,7 @@ export const SideBar = ({ children }) => {
     )
 }
 
-export const Footer = () => {
+const Footer = () => {
     return (
         <div className={classes.footer}>
             <div className={classes.logoContainer} >

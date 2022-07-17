@@ -1,12 +1,12 @@
-import NavBar, { Footer } from "./navbar";
+import NavBar from "./navbar";
 import Dashboard from "./dashboard";
 
 const Home = () => {
     return (
         <div className="main">
-            <NavBar/>
-            <Dashboard/>
-            <Footer />
+            <NavBar>
+                <Dashboard/>
+            </NavBar>
         </div>
     );
 }
