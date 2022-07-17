@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getArtistDetails, getTopTenSongs } from "../../api";
 
 export const useSearch = (query, limit = 1) => {
