@@ -26,6 +26,6 @@
 
 .main {
   background-image: url("../src/assets/background.png");
-  background-size: contain;
+  background-size: inherit;
   background-repeat: repeat-y;
 }
