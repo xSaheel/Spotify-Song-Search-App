@@ -11,6 +11,8 @@ const modalImg = "https://www.sheerid.com/shoppers/wp-content/uploads/sites/4/20
 
 const Dashboard = () => {
   const { handleLogin, userData } = useAuth();
+  console.log('userData: ', userData);
+  console.log('bruh: ', !userData);
   const [isOpen, setIsOpen] = useState(!userData);
   return (
     <div className={classes.root}>
