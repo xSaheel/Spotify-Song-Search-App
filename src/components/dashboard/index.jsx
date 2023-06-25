@@ -6,14 +6,15 @@ import 'react-responsive-modal/styles.css';
 import classes from "./styles.module.scss";
 import { useState } from "react";
 import { useAuth } from "../navbar/useAuth";
+import queryString from 'query-string';
 
 const modalImg = "https://www.sheerid.com/shoppers/wp-content/uploads/sites/4/2020/05/spotify-deal-page-467x316.jpg";
 
 const Dashboard = () => {
-  const { handleLogin, userData } = useAuth();
-  console.log('userData: ', userData);
-  console.log('bruh: ', !userData);
-  const [isOpen, setIsOpen] = useState(!userData);
+  const parsedHash = queryString.parse(window.location.hash);
+  const accessToken = parsedHash.access_token;
+  const { handleLogin } = useAuth();
+  const [isOpen, setIsOpen] = useState(!accessToken);
   return (
     <div className={classes.root}>
       <h1 className={classes.heroText}>Login to listen to top 10 tracks from your favorite artists.</h1>
